@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        PYTHON = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-    }
-
     stages {
 
         stage('Checkout Code') {
@@ -13,31 +9,23 @@ pipeline {
             }
         }
 
-        stage('Upgrade Pip') {
-            steps {
-                bat "\"${PYTHON}\" -m pip install --upgrade pip"
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                bat "\"${PYTHON}\" -m pip install -r requirements.txt"
+                bat '"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install --upgrade pip'
+                bat '"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
-        stage('Run Flask App (Background)') {
+        stage('Start Flask App') {
             steps {
-                bat 'start "" /B "' + env.PYTHON + '" app.py'
+                bat 'start "" /B "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" app.py'
             }
         }
     }
 
     post {
         success {
-            echo '✅ Build Successful - Flask App Started'
-        }
-        failure {
-            echo '❌ Build Failed - Check logs'
+            echo 'Flask App started successfully 🚀'
         }
     }
 }
