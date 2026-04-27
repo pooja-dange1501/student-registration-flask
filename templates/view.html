@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Registered Students</h2>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+
+        {% for s in students %}
+        <tr>
+            <td>{{s[0]}}</td>
+            <td>{{s[1]}}</td>
+            <td>{{s[2]}}</td>
+            <td>{{s[3]}}</td>
+            <td>{{s[4]}}</td>
+            <td>{{s[5]}}</td>
+            <td>
+                <a href="/edit/{{s[0]}}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete/{{s[0]}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
